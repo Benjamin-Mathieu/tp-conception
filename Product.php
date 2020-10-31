@@ -1,7 +1,7 @@
 <?php
 
-abstract class Product
-{
+class Product {
+    
     public $product_id;
     public $product_name;
     public $product_price;
@@ -9,17 +9,17 @@ abstract class Product
     public $products = [];
 
     public function createProduct() {
-        array_push($this->products, $this->product_type);
+        $products = $this->product_name;
     }
 
     public function __toString() {
-        $string = "$this->product_name = $this->product_price €";
+        $string = "Type : $this->product_type <br> Name : $this->product_name <br> Price : $this->product_price €";
         return $string;
     }
 
     public function removeProduct()
     {
-
+        echo "test";
     }
 
     public function updateProduct()
@@ -27,9 +27,9 @@ abstract class Product
 
     }
 
-    static public function getMenu() {
-        foreach($products as $type_product => $product) {
-            echo "Type de produit: $type_product <br>Produit: $product";
+    public function getMenu() {
+        foreach($products as $v) {
+            echo $v;
         }
     }
 }
