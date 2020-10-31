@@ -1,35 +1,45 @@
 <?php
 
-class Product {
-    
+class Product
+{
+
     public $product_id;
     public $product_name;
     public $product_price;
     public $product_type;
-    public $products = [];
+    public static $products = [];
 
-    public function createProduct() {
-        $products = $this->product_name;
+    public function createProduct()
+    {
+        self::$products[$this->product_type][] = array($this->product_name, $this->product_price);
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         $string = "Type : $this->product_type <br> Name : $this->product_name <br> Price : $this->product_price €";
         return $string;
     }
 
     public function removeProduct()
     {
-        echo "test";
+        unset($this->product_name, $this->product_price);
     }
 
     public function updateProduct()
     {
-
     }
 
-    public function getMenu() {
-        foreach($products as $v) {
-            echo $v;
+    public static function getMenu()
+    {
+        foreach (self::$products as $type => $produit) {
+
+            echo "<br><b>$type</b>";
+
+            foreach ($produit as $key => $description) {
+                for ($i = 0; $i < count($description); $i++) {
+                    echo "<br>" . $description[$i];
+                }
+            }
         }
     }
 }
