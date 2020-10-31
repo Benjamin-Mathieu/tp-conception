@@ -28,14 +28,16 @@ $bolognaise->product_price = 10.50;
 echo $bolognaise;
 
 echo '<hr>';
+
+// CREATION DES PRODUITS
 $calzone->createProduct();
 $carbonara->createProduct();
 $montagnarde->createProduct();
 $bolognaise->createProduct();
 
+// SUPPRESSION DES PRODUITS
+$bolognaise->removeProduct();
 
 // AFFICHAGE DU MENU
 echo "<h1 style='text-align: center'>MENU</h1><br>";
 Product::getMenu();
-
-$bolognaise->removeProduct();

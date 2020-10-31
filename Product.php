@@ -11,7 +11,7 @@ class Product
 
     public function createProduct()
     {
-        self::$products[$this->product_type][] = array($this->product_name, $this->product_price);
+        self::$products[$this->product_type][$this->product_name] = array($this->product_price);
     }
 
     public function __toString()
@@ -22,7 +22,7 @@ class Product
 
     public function removeProduct()
     {
-        unset($this->product_name, $this->product_price);
+        unset(self::$products[$this->product_type][$this->product_name]);
     }
 
     public function updateProduct()
@@ -35,9 +35,9 @@ class Product
 
             echo "<br><b>$type</b>";
 
-            foreach ($produit as $key => $description) {
+            foreach ($produit as $name => $description) {
                 for ($i = 0; $i < count($description); $i++) {
-                    echo "<br>" . $description[$i];
+                    echo "<br>$name<br>" . $description[$i];
                 }
             }
         }
