@@ -1,10 +1,8 @@
 <?php
 
-require('Product.php');
-require('Pizza.php');
-require('Paste.php');
+require 'Autoloader.php';
+Autoloader::register();
 
-// CREATION DES PRODUITS
 $calzone = new Pizza('calzone');
 $calzone->product_price = 15;
 echo $calzone;
