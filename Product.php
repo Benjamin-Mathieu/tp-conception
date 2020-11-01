@@ -2,44 +2,40 @@
 
 class Product
 {
+    public string $name;
+    public int $price;
+    public string $type;
+    public array $ingredients;
+    public int $stock;
 
-    public $product_id;
-    public $product_name;
-    public $product_price;
-    public $product_type;
-    public static $products = [];
-
-    public function createProduct()
+    public function __construct(string $type, string $name, int $price, array $ingredients, int $stock)
     {
-        self::$products[$this->product_type][$this->product_name] = array($this->product_price);
+        $this->type = $type;
+        $this->name = $name;
+        $this->price = $price;
+        $this->ingredients = $ingredients;
+        $this->stock = $stock;
     }
 
     public function __toString()
     {
-        $string = "Type : $this->product_type <br> Name : $this->product_name <br> Price : $this->product_price €";
+        $string = "<ul>Type : $this->type 
+        <li>Nom : $this->name</li> 
+        <li>Prix : $this->price €</li>
+        <li>Ingredients: " . implode(", ", $this->ingredients) . "</li>
+        <li>Stock: $this->stock</li>
+        </ul>";
         return $string;
     }
 
-    public function removeProduct()
+
+    public function setStock(int $stock)
     {
-        unset(self::$products[$this->product_type][$this->product_name]);
+        $this->$stock = $stock;
     }
 
-    public function updateProduct()
+    public function setPrice(int $price)
     {
-    }
-
-    public static function getMenu()
-    {
-        foreach (self::$products as $type => $produit) {
-
-            echo "<br><b>$type</b>";
-
-            foreach ($produit as $name => $description) {
-                for ($i = 0; $i < count($description); $i++) {
-                    echo "<br>$name<br>" . $description[$i];
-                }
-            }
-        }
+        $this->price = $price;
     }
 }
