@@ -3,39 +3,27 @@
 require 'Autoloader.php';
 Autoloader::register();
 
-$calzone = new Pizza('calzone');
-$calzone->product_price = 15;
-echo $calzone;
+$shop = new Shop();
 
-echo '<hr>';
+// création des produits
+$ingredients = ['tomato', 'cheese'];
+$pizzaCalzone = new Product('Pizza', 'Calzone', 10, $ingredients, 5);
 
-$montagnarde = new Pizza('montagnarde');
-$montagnarde->product_price = 17;
-echo $montagnarde;
+$shop->addProduct($pizzaCalzone);
+$shop->showMenu();
 
-echo '<hr>';
 
-$carbonara = new Paste('carbonara');
-$carbonara->product_price = 12;
-echo $carbonara;
+//gestion des produits
+$pizzaCalzone->setStock(10);
+$pizzaCalzone->setPrice(15);
 
-echo '<hr>';
+// création d'une commande
+$command = new Command();
+$command->addProduct($pizzaCalzone);
+$shop->addCommand($command);
 
-$bolognaise = new Paste('bolognaise');
-$bolognaise->product_price = 10.50;
-echo $bolognaise;
+// gestion des commandes
+$command->setStatus(StatusCommand::IN_PREPARATION);
 
-echo '<hr>';
-
-// CREATION DES PRODUITS
-$calzone->createProduct();
-$carbonara->createProduct();
-$montagnarde->createProduct();
-$bolognaise->createProduct();
-
-// SUPPRESSION DES PRODUITS
-$bolognaise->removeProduct();
-
-// AFFICHAGE DU MENU
-echo "<h1 style='text-align: center'>MENU</h1><br>";
-Product::getMenu();
+// génération de la facture
+$command->showInvoice();
